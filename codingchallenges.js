@@ -33,7 +33,7 @@ Hints: Use tools from all lectures in this section so far
 const checkDogs = function (dogsJulia, dogsKate) {
   const dogsJuliaCorrect = dogsJulia.slice();
   dogsJuliaCorrect.splice(0, 1);
-  dogsJuliaCorrect.splice(2, 2);
+  dogsJuliaCorrect.splice(-2);
 
   const allDogs = dogsJuliaCorrect.concat(dogsKate);
 
