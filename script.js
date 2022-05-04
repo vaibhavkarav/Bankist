@@ -89,6 +89,26 @@ const calcDisplayBalance = function (movements) {
 
 calcDisplayBalance(account1.movements);
 
+const calcDisplaySummary = function (movements) {
+  const incomes = movements
+    .filter((mov) => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes}€`;
+
+  const out = movements
+    .filter((mov) => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(out)}€`;
+
+  const interest = movements
+    .filter((mov) => mov > 0)
+    .map((deposit) => deposit * 0.012)
+    .filter((interest) => interest >= 1)
+    .reduce((acc, interest) => acc + interest, 0);
+  labelSumInterest.textContent = `${interest}€`;
+};
+calcDisplaySummary(account1.movements);
+
 const createUsernames = function (accs) {
   accs.forEach(function (acc) {
     acc.username = acc.owner
@@ -268,7 +288,6 @@ for (const mov of movements) {
  }
 console.log(depositsFor);
         
-*/
 //////////////////////////////////////
 // reduce Method
 //////////////////////////////////////
@@ -278,21 +297,37 @@ console.log(depositsFor);
 //   console.log(`Iteration ${i}: ${acc}`);
 //   return acc + cur;
 // }, 0);
-
+  
 const balance = movements.reduce((acc, cur) => acc + cur, 0);
-
+  
 console.log(balance);
-
+  
 let balance2 = 0;
 for (const mov of movements) {
   balance2 += mov;
 }
 console.log(balance2);
-
+  
 // Maximum value
-
+  
 const max = movements.reduce(
   (acc, cur) => (acc > cur ? acc : cur),
   movements[0]
-);
+  );
 console.log(max);
+    
+*/
+//////////////////////////////////////
+// Magic of Chaining Methods
+//////////////////////////////////////
+
+const euroToUsd = 1.1;
+
+// PIPELINE
+
+const totalDepositUSD = movements
+  .filter((mov) => mov > 0)
+  .map((mov) => mov * euroToUsd)
+  .reduce((acc, mov) => acc + mov, 0);
+
+console.log(totalDepositUSD);
