@@ -316,7 +316,6 @@ const max = movements.reduce(
   );
 console.log(max);
     
-*/
 //////////////////////////////////////
 // Magic of Chaining Methods
 //////////////////////////////////////
@@ -326,8 +325,37 @@ const euroToUsd = 1.1;
 // PIPELINE
 
 const totalDepositUSD = movements
-  .filter((mov) => mov > 0)
-  .map((mov) => mov * euroToUsd)
-  .reduce((acc, mov) => acc + mov, 0);
+.filter((mov) => mov > 0)
+.map((mov) => mov * euroToUsd)
+.reduce((acc, mov) => acc + mov, 0);
 
 console.log(totalDepositUSD);
+
+*/
+
+//////////////////////////////////////
+// find Method
+//////////////////////////////////////
+
+const firstWithdrawal = movements.find((mov) => mov < 0);
+
+console.log(movements);
+console.log(firstWithdrawal);
+
+console.log(accounts);
+
+const account = accounts.find((acc) => acc.owner === "Jessica Davis");
+
+console.log(account);
+
+// Using for-of loop
+
+const accountNew = function (accounts) {
+  for (const acc of accounts) {
+    if (acc.owner === "Jessica Davis") {
+      return acc;
+    }
+  }
+};
+
+console.log(accountNew(accounts));
