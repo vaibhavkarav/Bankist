@@ -167,10 +167,10 @@ btnTransfer.addEventListener("click", function (e) {
   inputTransferAmount.blur();
 
   if (
-    amount > 0 &&
-    receiverAcc &&
-    currentAccount.balance >= amount &&
-    receiverAcc?.username !== currentAccount.username
+    amount > 0 && // no negative amount
+    receiverAcc && // username/account should be valid
+    currentAccount.balance >= amount && // user should have sufficient amount
+    receiverAcc?.username !== currentAccount.username // cannot transfer money to self
   ) {
     receiverAcc.movements.push(amount);
     currentAccount.movements.push(-amount);
