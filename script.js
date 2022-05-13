@@ -64,6 +64,8 @@ const inputClosePin = document.querySelector(".form__input--pin");
 const displayMovements = function (movements) {
   containerMovements.innerHTML = "";
 
+  // const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
   movements.forEach(function (mov, i) {
     const type = mov > 0 ? "deposit" : "withdrawal";
 
@@ -224,6 +226,13 @@ btnClose.addEventListener("click", function (e) {
   inputCloseUsername.value = inputClosePin.value = "";
   inputClosePin.blur();
 });
+
+// let sorted = false;
+// btnSort.addEventListener("click", function (e) {
+//   e.preventDefault();
+//   displayMovements(currentAccount.movements, !sorted);
+//   sorted = !sorted;
+// });
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -488,7 +497,6 @@ console.log(movements.some(deposit));
 console.log(movements.every(deposit));
 console.log(movements.filter(deposit));
 
-*/
 
 //////////////////////////////////////
 // flat and flatMap Method
@@ -510,13 +518,49 @@ console.log(arrDeep.flat(2));
 
 // Chaining(flat)
 const overallBalance = accounts
-  .map((acc) => acc.movements)
-  .flat()
-  .reduce((acc, mov) => acc + mov, 0);
+.map((acc) => acc.movements)
+.flat()
+.reduce((acc, mov) => acc + mov, 0);
 console.log(overallBalance);
 
 // Chaining(flatMap)
 const overallBalance2 = accounts
   .flatMap((acc) => acc.movements)
   .reduce((acc, mov) => acc + mov, 0);
-console.log(overallBalance2);
+  console.log(overallBalance2);
+  
+*/
+
+//////////////////////////////////////
+// Sorting Arrays
+//////////////////////////////////////
+
+// Strings
+const owners = ["Vaibhav", "Kartik", "Preeti", "Akshay"];
+console.log(owners.sort());
+console.log(owners);
+
+// Numbers
+console.log(movements);
+
+// Ascending
+// return < 0, A, B (keep order)(-1)
+// return > 0, B, A (switch order)(1)
+
+// movements.sort((a, b) => {
+//   if (a > b) return 1;
+//   if (a < b) return -1;
+// });
+movements.sort((a, b) => a - b);
+console.log(movements);
+
+// Descending
+// return < 0, B, A (switch order)(1)
+// return > 0, A, B (keep order)(-1)
+
+// movements.sort((a, b) => {
+//   if (a > b) return -1;
+//   if (a < b) return 1;
+// });
+movements.sort((a, b) => b - a);
+console.log(movements);
