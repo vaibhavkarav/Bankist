@@ -564,19 +564,18 @@ console.log(movements);
     movements.sort((a, b) => b - a);
     console.log(movements);
       
-*/
-
+    
 ////////////////////////////////////////////
-// More ways of Creating and Filling Arrays
+  // More ways of Creating and Filling Arrays
 ////////////////////////////////////////////
-
+    
 const arr = [1, 2, 3, 4, 5, 6, 7];
 console.log(new Array(1, 2, 3, 4, 5, 6, 7));
-
+    
 // Empty arrays + fill method
 const x = new Array(7);
 console.log(x); // weird behaviour of new Array when only one argument is passed
-
+    
 // console.log(x.map(() => 5)); // does not work
 // x.fill(1);
 x.fill(1, 3, 5);
@@ -596,9 +595,30 @@ labelBalance.addEventListener("click", function () {
   const movementsUI = Array.from(
     document.querySelectorAll(".movements__value"),
     (el) => Number(el.textContent.replace("€", ""))
-  );
-
-  console.log(movementsUI);
-
-  const movementsUI2 = [...document.querySelectorAll(".movements__value")]; // have to do mapping separately
-});
+    );
+    
+    console.log(movementsUI);
+    
+    const movementsUI2 = [...document.querySelectorAll(".movements__value")]; // have to do mapping separately
+  });
+  
+  
+// codewars alternate solution
+const number = function (busStops) {
+  const boarding = Array.from(busStops, (cur) => cur[0]);
+  const disembark = Array.from(busStops, (cur) => cur[1]);
+  return (
+    boarding.reduce((acc, cur) => acc + cur, 0) -
+    disembark.reduce((acc, cur) => acc + cur, 0)
+    );
+  };
+    
+  console.log(
+    number([
+      [10, 0],
+      [3, 5],
+      [5, 8],
+    ])
+    );
+      
+  */
